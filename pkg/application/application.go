@@ -11,8 +11,8 @@ type Application struct {
 	Cfg *config.Config
 }
 
-// Get assembles and captures env vars, establishes DB connection and keeps
-// reference both
+// Get captures env vars, establishes DB connection and keeps/returns
+// reference to both
 func Get() (*Application, error) {
 	cfg := config.Get()
 	db, err := db.Get(cfg.GetDBConnStr())
