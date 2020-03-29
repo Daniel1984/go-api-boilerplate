@@ -12,7 +12,7 @@ type Server struct {
 	srv *http.Server
 }
 
-func New() *Server {
+func Get() *Server {
 	return &Server{
 		srv: &http.Server{},
 	}
