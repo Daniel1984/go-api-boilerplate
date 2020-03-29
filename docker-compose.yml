@@ -25,12 +25,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        API_PORT: ${API_PORT}
+    env_file:
+      - .env
     depends_on:
       - pg
     volumes:
       - ./:/app
     ports:
-      - 7777:7777
+      - "${API_PORT}:${API_PORT}"
     networks:
       - boilerplatenetwork
     env_file:
