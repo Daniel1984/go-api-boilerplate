@@ -8,6 +8,6 @@ import (
 
 func Get(app *application.Application) *httprouter.Router {
 	mux := httprouter.New()
-	mux.GET("/", getuser.Do)
+	mux.GET("/", getuser.Do(app))
 	return mux
 }

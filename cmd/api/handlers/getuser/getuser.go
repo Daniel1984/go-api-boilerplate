@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/boilerplate/pkg/application"
 	"github.com/julienschmidt/httprouter"
 )
 
-func Do(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "hello")
+func Do(app *application.Application) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		fmt.Fprintf(w, "hello")
+	}
 }
