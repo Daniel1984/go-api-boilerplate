@@ -15,8 +15,8 @@ type Application struct {
 // reference to both
 func Get() (*Application, error) {
 	cfg := config.Get()
-	db, err := db.Get(cfg.GetDBConnStr())
 
+	db, err := db.Get(cfg.GetDBConnStr())
 	if err != nil {
 		return nil, err
 	}
