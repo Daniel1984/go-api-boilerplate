@@ -14,6 +14,7 @@ type Config struct {
 	dbName     string
 	testDBHost string
 	testDBName string
+	apiPort    string
 }
 
 func Get() *Config {
@@ -26,6 +27,7 @@ func Get() *Config {
 	flag.StringVar(&conf.dbName, "dbname", os.Getenv("POSTGRES_DB"), "DB name")
 	flag.StringVar(&conf.testDBHost, "testdbhost", os.Getenv("TEST_DB_HOST"), "test database host")
 	flag.StringVar(&conf.testDBName, "testdbname", os.Getenv("TEST_DB_NAME"), "test database name")
+	flag.StringVar(&conf.apiPort, "apiPort", os.Getenv("API_PORT"), "API Port")
 
 	flag.Parse()
 
@@ -49,4 +51,8 @@ func (c *Config) getDBConnStr(dbhost, dbname string) string {
 		c.dbPort,
 		dbname,
 	)
+}
+
+func (c *Config) GetAPIPort() string {
+	return ":" + c.apiPort
 }
