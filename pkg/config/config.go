@@ -15,6 +15,7 @@ type Config struct {
 	testDBHost string
 	testDBName string
 	apiPort    string
+	migrate    string
 }
 
 func Get() *Config {
@@ -28,6 +29,7 @@ func Get() *Config {
 	flag.StringVar(&conf.testDBHost, "testdbhost", os.Getenv("TEST_DB_HOST"), "test database host")
 	flag.StringVar(&conf.testDBName, "testdbname", os.Getenv("TEST_DB_NAME"), "test database name")
 	flag.StringVar(&conf.apiPort, "apiPort", os.Getenv("API_PORT"), "API Port")
+	flag.StringVar(&conf.migrate, "migrate", "up", "specify if we should be migrating DB 'up' or 'down'")
 
 	flag.Parse()
 
@@ -55,4 +57,8 @@ func (c *Config) getDBConnStr(dbhost, dbname string) string {
 
 func (c *Config) GetAPIPort() string {
 	return ":" + c.apiPort
+}
+
+func (c *Config) GetMigration() string {
+	return c.migrate
 }
