@@ -31,6 +31,5 @@ func createUser(app *application.Application) httprouter.Handle {
 }
 
 func Do(app *application.Application) httprouter.Handle {
-	mware := []middleware.Middleware{middleware.LogRequest(app)}
-	return middleware.Chain(createUser(app), mware...)
+	return middleware.Chain(createUser(app), middleware.LogRequest)
 }
