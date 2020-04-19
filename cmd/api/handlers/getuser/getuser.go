@@ -40,7 +40,7 @@ func getUser(app *application.Application) httprouter.Handle {
 
 func Do(app *application.Application) httprouter.Handle {
 	mware := []middleware.Middleware{
-		middleware.LogRequest(app),
+		middleware.LogRequest,
 		validateParams,
 	}
 
