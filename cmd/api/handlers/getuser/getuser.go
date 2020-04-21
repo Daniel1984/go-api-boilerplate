@@ -39,10 +39,10 @@ func getUser(app *application.Application) httprouter.Handle {
 }
 
 func Do(app *application.Application) httprouter.Handle {
-	mware := []middleware.Middleware{
+	mdw := []middleware.Middleware{
 		middleware.LogRequest,
-		validateParams,
+		validateRequest,
 	}
 
-	return middleware.Chain(getUser(app), mware...)
+	return middleware.Chain(getUser(app), mdw...)
 }
