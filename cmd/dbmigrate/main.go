@@ -15,25 +15,28 @@ func main() {
 	cfg := config.Get()
 
 	direction := cfg.GetMigration()
-
 	if direction != "down" && direction != "up" {
-		log.Fatal("-migrate accepts [up, down] values only")
+		log.Println("-migrate accepts [up, down] values only")
+		return
 	}
 
 	m, err := migrate.New("file://db/migrations", cfg.GetDBConnStr())
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("%s", err)
+		return
 	}
 
 	if direction == "up" {
 		if err := m.Up(); err != nil {
-			log.Fatal(err)
+			log.Printf("failed migrate up: %s", err)
+			return
 		}
 	}
 
 	if direction == "down" {
 		if err := m.Down(); err != nil {
-			log.Fatal(err)
+			log.Printf("failed migrate down: %s", err)
+			return
 		}
 	}
 }
